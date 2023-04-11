@@ -32,12 +32,12 @@ export function Level({ title, type = 'EASY', isChecked = false, ...rest }: Prop
     }
   })
 
-  function onPressIn() {
-    scale.value = withTiming(1.1);
+  function onPressIn(){
+    scale.value = 1.1
   }
 
-  function onPressOut() {
-    scale.value = withTiming(1);
+  function onPressOut(){
+    scale.value = 1
   }
 
   return (

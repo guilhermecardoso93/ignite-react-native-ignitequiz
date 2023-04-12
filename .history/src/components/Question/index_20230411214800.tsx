@@ -22,37 +22,27 @@ export function Question({
   alternativeSelected,
   setAlternativeSelected,
 }: Props) {
+  
   const enteringKeyFrame = new Keyframe({
     0: {
       opacity: 0,
-      transform: [{ translateX: SCREEN_WIDTH }, { rotate: "90deg" }],
+      transform: [
+        { translateX: SCREEN_WIDTH },
+        { rotate: '90deg'}
+      ],
     },
     70: {
       opacity: 0.3,
     },
     100: {
       opacity: 1,
-      transform: [{ translateX: 0 }, { rotate: "0deg" }],
-    },
-  });
-
-  const exitingKeyFrame = new Keyframe({
-    from: {
-      opacity: 1,
-      transform: [{ translateX: 0 }, { rotate: "0deg" }],
-    },
-    to: {
-      opacity: 1,
-      transform: [{ translateX: SCREEN_WIDTH * -1 }, { rotate: "-90deg" }],
+      transform: [{ translateX: 0 },
+        { rotate: '0deg'}],
     },
   });
 
   return (
-    <Animated.View
-      style={styles.container}
-      entering={enteringKeyFrame.duration(400)}
-      exiting={exitingKeyFrame.duration(400)}
-    >
+    <Animated.View style={styles.container} entering={enteringKeyFrame}>
       <Text style={styles.title}>{question.title}</Text>
 
       {question.alternatives.map((alternative, index) => (

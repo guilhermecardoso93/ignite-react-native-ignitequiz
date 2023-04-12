@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
   progress: {
     height: 8,
-    backgroundColor: THEME.COLORS.BRAND_LIGHT,
+    backgroundColor: '#00B37E',
     borderRadius: 8,
   }
 });

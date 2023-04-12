@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import Animated, {
-  Layout,
-  SlideInRight,
-  SlideOutLeft,
-  SlideOutRight,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { View, ScrollView, TouchableOpacity, Alert } from "react-native";
 import { HouseLine } from "phosphor-react-native";
@@ -15,6 +10,7 @@ import { HistoryCard, HistoryProps } from "../../components/HistoryCard";
 import { styles } from "./styles";
 import { historyGetAll, historyRemove } from "../../storage/quizHistoryStorage";
 import { Loading } from "../../components/Loading";
+
 
 export function History() {
   const [isLoading, setIsLoading] = useState(true);
@@ -66,12 +62,7 @@ export function History() {
         showsVerticalScrollIndicator={false}
       >
         {history.map((item) => (
-          <Animated.View
-            key={item.id}
-            layout={Layout.springify()}
-            entering={SlideInRight}
-            exiting={SlideOutRight}
-          >
+          <Animated.View key={item.id}>
             <TouchableOpacity onPress={() => handleRemove(item.id)}>
               <HistoryCard data={item} />
             </TouchableOpacity>

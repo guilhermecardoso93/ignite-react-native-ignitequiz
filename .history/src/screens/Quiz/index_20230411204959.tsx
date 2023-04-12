@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Alert, ScrollView, View } from "react-native";
 import Animated, {
-  Easing,
-  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withSequence,
@@ -107,23 +105,12 @@ export function Quiz() {
   }
 
   function shakeAnimation() {
-    shake.value = withSequence(
-      withTiming(3, { duration: 400, easing: Easing.bounce }),
-      withTiming(0)
-    );
+    shake.value = withSequence(withTiming(100), withTiming(0));
   }
 
   const shakeStyleAnimated = useAnimatedStyle(() => {
     return {
-      transform: [
-        {
-          translateX: interpolate(
-            shake.value,
-            [0, 0.5, 1, 1.5, 2, 2.5, 3],
-            [0, -15, 0, 15, 0, -15, 0]
-          ),
-        },
-      ],
+      transform: [{ translateX: shake.value }],
     };
   });
 

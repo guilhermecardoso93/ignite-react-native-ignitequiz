@@ -37,21 +37,21 @@ export function Question({
   });
 
   const exitingKeyFrame = new Keyframe({
-    from: {
+    from : {
       opacity: 1,
-      transform: [{ translateX: 0 }, { rotate: "0deg" }],
+      transform: [{ translateX: 0 }, { rotate: "0deg"}]
     },
     to: {
       opacity: 1,
-      transform: [{ translateX: SCREEN_WIDTH * -1 }, { rotate: "-90deg" }],
+      transform: [{ translateX: SCREEN_WIDTH * -1 }, { rotate: "0deg"}]
     },
-  });
+  })
 
   return (
-    <Animated.View
-      style={styles.container}
-      entering={enteringKeyFrame.duration(400)}
-      exiting={exitingKeyFrame.duration(400)}
+    <Animated.View 
+      style={styles.container} 
+      entering={enteringKeyFrame}
+      exiting={exitingKeyFrame}
     >
       <Text style={styles.title}>{question.title}</Text>
 

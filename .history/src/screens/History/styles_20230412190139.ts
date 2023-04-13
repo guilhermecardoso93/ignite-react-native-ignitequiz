@@ -8,14 +8,11 @@ export const styles = StyleSheet.create({
     backgroundColor: THEME.COLORS.GREY_800,
   },
   history: {
-    flexGrow: 1,
     padding: 32,
   },
   swipeableContainer: {
     width: '100%',
     borderRadius: 6,
-    height: 90,
-    marginBottom: 12,
     backgroundColor: THEME.COLORS.DANGER_LIGHT,
   },
   swipeableRemove: {

@@ -173,7 +173,6 @@ export function Quiz() {
   });
 
   const onPan = Gesture.Pan()
-    .activateAfterLongPress(200)
     .onUpdate((event) => {
       const moveToLeft = event.translationX < 0;
 
@@ -183,7 +182,7 @@ export function Quiz() {
     })
     .onEnd((event) => {
       if(event.translationX < CARD_SKIP_AREA) {
-        runOnJS(handleSkipConfirm)()
+        runOnJs(handleSkipConfirm)()
       }
       cardPosition.value = withTiming(0);
     });
@@ -222,7 +221,6 @@ export function Quiz() {
           current={currentQuestion + 1}
         />
       </Animated.View>
-
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.question}
@@ -236,7 +234,6 @@ export function Quiz() {
             totalOfQuestions={quiz.questions.length}
           />
         </Animated.View>
-
         <GestureDetector gesture={onPan}>
           <Animated.View style={[shakeStyleAnimated, dragStyles]}>
             <Question

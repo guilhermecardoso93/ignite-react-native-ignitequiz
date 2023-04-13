@@ -6,13 +6,7 @@ import Animated, {
   SlideOutRight,
 } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-  Pressable,
-} from "react-native";
+import { View, ScrollView, TouchableOpacity, Alert, Pressable } from "react-native";
 import { HouseLine, Trash } from "phosphor-react-native";
 
 import { Header } from "../../components/Header";
@@ -30,7 +24,7 @@ export function History() {
 
   const { goBack } = useNavigation();
 
-  const swipeableRefs = useRef<Swipeable[]>([]);
+  const swipeableRefs = useRef<Swipeable[]>([])
 
   async function fetchHistory() {
     const response = await historyGetAll();
@@ -45,8 +39,6 @@ export function History() {
   }
 
   function handleRemove(id: string, index: number) {
-    swipeableRefs.current?.[index].close();
-
     Alert.alert("Remover", "Deseja remover esse registro?", [
       {
         text: "Sim",
@@ -85,24 +77,27 @@ export function History() {
             exiting={SlideOutRight}
           >
             <Swipeable
-              ref={(ref) => {
-                if (ref) {
-                  swipeableRefs.current.push(ref);
-                }
-              }}
+            ref={(ref) => {
+              if(ref){
+                swipeableRefs.current.push(ref)
+              }
+            }}
               overshootLeft={false}
               containerStyle={styles.swipeableContainer}
-              leftThreshold={10}
-              renderRightActions={() => null}
-              onSwipeableOpen={() => handleRemove(item.id, index)}
               renderLeftActions={() => (
-                <View style={styles.swipeableRemove}>
-                  <Trash size={32} color={THEME.COLORS.GREY_100} />
-                </View>
+                <Pressable
+                  onPress={() => handleRemove(item.id, index)} 
+                  style={styles.swipeableRemove}
+                >
+                  <Trash 
+                    size={32} 
+                    color={THEME.COLORS.GREY_100}
+                  />
+                </Pressable>
               )}
             >
               <HistoryCard data={item} />
-            </Swipeable>
+              </Swipeable>
           </Animated.View>
         ))}
       </ScrollView>

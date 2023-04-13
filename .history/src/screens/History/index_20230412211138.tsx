@@ -92,8 +92,7 @@ export function History() {
               }}
               overshootLeft={false}
               containerStyle={styles.swipeableContainer}
-              leftThreshold={10}
-              renderRightActions={() => null}
+              leftThreshold={5}
               onSwipeableOpen={() => handleRemove(item.id, index)}
               renderLeftActions={() => (
                 <View style={styles.swipeableRemove}>

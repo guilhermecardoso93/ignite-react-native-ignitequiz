@@ -11,7 +11,6 @@ import Animated, {
   Extrapolate,
   Easing,
   useAnimatedScrollHandler,
-  runOnJS
 } from "react-native-reanimated";
 
 import { styles } from "./styles";
@@ -32,8 +31,7 @@ interface Params {
   id: string;
 }
 
-const CARD_INCLINATION = 10;
-const CARD_SKIP_AREA = (-200);
+const CARD_INCLINATION = 10 
 
 type QuizProps = typeof QUIZ[0];
 
@@ -173,7 +171,6 @@ export function Quiz() {
   });
 
   const onPan = Gesture.Pan()
-    .activateAfterLongPress(200)
     .onUpdate((event) => {
       const moveToLeft = event.translationX < 0;
 
@@ -181,15 +178,13 @@ export function Quiz() {
         cardPosition.value = event.translationX;
       }
     })
-    .onEnd((event) => {
-      if(event.translationX < CARD_SKIP_AREA) {
-        runOnJS(handleSkipConfirm)()
-      }
+    .onEnd(() => {
       cardPosition.value = withTiming(0);
     });
 
+  
   const dragStyles = useAnimatedStyle(() => {
-    const rotateZ = cardPosition.value / CARD_INCLINATION;
+    const rotateZ = cardPosition.value / CARD_INCLINATION
 
     return {
       transform: [
@@ -197,8 +192,8 @@ export function Quiz() {
           translateX: cardPosition.value,
         },
         {
-          rotateZ: `${rotateZ}deg`,
-        },
+          rotateZ: `${rotateZ}deg`
+        }
       ],
     };
   });
@@ -222,7 +217,6 @@ export function Quiz() {
           current={currentQuestion + 1}
         />
       </Animated.View>
-
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.question}
@@ -236,7 +230,6 @@ export function Quiz() {
             totalOfQuestions={quiz.questions.length}
           />
         </Animated.View>
-
         <GestureDetector gesture={onPan}>
           <Animated.View style={[shakeStyleAnimated, dragStyles]}>
             <Question
@@ -256,7 +249,3 @@ export function Quiz() {
     </View>
   );
 }
-function runOnJs(handleSkipConfirm: () => void) {
-  throw new Error("Function not implemented.");
-}
-

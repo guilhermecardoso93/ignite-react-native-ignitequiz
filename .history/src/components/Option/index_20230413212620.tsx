@@ -1,17 +1,9 @@
 import { useEffect } from "react";
 import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { styles } from "./styles";
-import {
-  Canvas,
-  Skia,
-  Path,
-  useValue,
-  runTiming,
-  BlurMask,
-  Circle,
-  Easing,
-} from "@shopify/react-native-skia";
+import { Canvas, Skia, Path, useValue } from "@shopify/react-native-skia";
 import { THEME } from "../../styles/theme";
+
 
 type Props = TouchableOpacityProps & {
   checked: boolean;
@@ -22,23 +14,19 @@ const CHECK_SIZE = 28;
 const CHECK_STROKE = 2;
 
 export function Option({ checked, title, ...rest }: Props) {
-  const percentage = useValue(0);
-  const circle = useValue(0);
+  const percentage = useValue(0)
   const RADIUS = (CHECK_SIZE - CHECK_STROKE) / 2;
-  const CENTER_CIRCLE = RADIUS / 2;
 
   const path = Skia.Path.Make();
   path.addCircle(CHECK_SIZE, CHECK_SIZE, RADIUS);
 
   useEffect(() => {
-    if (checked) {
-      runTiming(percentage, 1, { duration: 700 });
-      runTiming(circle, CENTER_CIRCLE, { easing: Easing.bounce });
+    if(checked){
+      percentage.current = 1
     } else {
-      runTiming(percentage, 0, { duration: 700 });
-      runTiming(circle, 0, { duration: 300 });
+      percentage.current = 0
     }
-  }, [checked]);
+  }, [checked])
 
   return (
     <TouchableOpacity
@@ -46,31 +34,23 @@ export function Option({ checked, title, ...rest }: Props) {
       {...rest}
     >
       <Text style={styles.title}>{title}</Text>
-      <Canvas style={{ height: CHECK_SIZE * 2, width: CHECK_SIZE * 2 }}>
+      <Canvas
+        style={{ height: CHECK_SIZE * 2, width: CHECK_SIZE * 2 }}
+      >
         <Path
           path={path}
           color={THEME.COLORS.GREY_500}
-          style="stroke"
+          style='stroke'
           strokeWidth={CHECK_STROKE}
         />
         <Path
           path={path}
           color={THEME.COLORS.BRAND_LIGHT}
-          style="stroke"
+          style='stroke'
           strokeWidth={CHECK_STROKE}
           start={0}
-          end={percentage}
-        >
-          <BlurMask blur={1} style="solid" />
-        </Path>
-        <Circle
-          cx={CHECK_SIZE}
-          cy={CHECK_SIZE}
-          r={circle}
-          color={THEME.COLORS.BRAND_LIGHT}
-        >
-          <BlurMask blur={4} style="solid" />
-        </Circle>
+          end={0.5}
+        />
       </Canvas>
     </TouchableOpacity>
   );

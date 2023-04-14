@@ -16,7 +16,7 @@ export const THEME = {
 
     STAR_BLUE: "#57B6E5",
     STAR_GREEN: "#00B37E",
-    STAR_GRAY: "#6F6F6F",
+    STAR_GRAY: "#6F6F6F"
 
     LABEL: "#A6A1B2",
   },

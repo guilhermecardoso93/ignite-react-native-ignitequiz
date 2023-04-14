@@ -124,12 +124,7 @@ export function Quiz() {
   function shakeAnimation() {
     shake.value = withSequence(
       withTiming(3, { duration: 400, easing: Easing.bounce }), 
-      withTiming(0, undefined, (finished) => {
-        'worklet';
-        if(finished) {
-          runOnJS(handleNextQuestion)()
-        }
-      })
+      withTiming(0)
     )
   }
 
@@ -242,7 +237,6 @@ export function Quiz() {
               question={quiz.questions[currentQuestion]}
               alternativeSelected={alternativeSelected}
               setAlternativeSelected={setAlternativeSelected}
-              onUnmout={() => setStatusReply(0)}
             />
           </Animated.View>
         </GestureDetector>

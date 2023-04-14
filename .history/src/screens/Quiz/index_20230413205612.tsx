@@ -242,7 +242,6 @@ export function Quiz() {
               question={quiz.questions[currentQuestion]}
               alternativeSelected={alternativeSelected}
               setAlternativeSelected={setAlternativeSelected}
-              onUnmout={() => setStatusReply(0)}
             />
           </Animated.View>
         </GestureDetector>

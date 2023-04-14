@@ -9,7 +9,6 @@ import {
   runTiming,
   BlurMask,
   Circle,
-  Easing,
 } from "@shopify/react-native-skia";
 import { THEME } from "../../styles/theme";
 
@@ -33,10 +32,9 @@ export function Option({ checked, title, ...rest }: Props) {
   useEffect(() => {
     if (checked) {
       runTiming(percentage, 1, { duration: 700 });
-      runTiming(circle, CENTER_CIRCLE, { easing: Easing.bounce });
+      runTiming(circle, CENTER_CIRCLE, { duration: 700 });
     } else {
       runTiming(percentage, 0, { duration: 700 });
-      runTiming(circle, 0, { duration: 300 });
     }
   }, [checked]);
 

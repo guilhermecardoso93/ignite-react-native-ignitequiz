@@ -36,7 +36,8 @@ export function Option({ checked, title, ...rest }: Props) {
       runTiming(circle, CENTER_CIRCLE, { easing: Easing.bounce });
     } else {
       runTiming(percentage, 0, { duration: 700 });
-      runTiming(circle, 0, { duration: 300 });
+      runTiming(circle, 0, { duration: 300  });
+
     }
   }, [checked]);
 

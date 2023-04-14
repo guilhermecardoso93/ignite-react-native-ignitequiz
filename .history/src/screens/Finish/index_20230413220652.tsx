@@ -6,7 +6,6 @@ import { Stars } from '../../components/Stars';
 
 import { styles } from './styles';
 
-
 interface Params {
   total: string;
   points: string;

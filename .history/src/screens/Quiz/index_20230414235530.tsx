@@ -238,7 +238,7 @@ export function Quiz() {
       handleStop
     );
 
-    return () => backHandler.remove();
+    return () => backHandler.remove()
   }, []);
 
   if (isLoading) {

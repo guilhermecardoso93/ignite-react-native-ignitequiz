@@ -16,7 +16,6 @@ export function AppRoutes() {
     >
       <Screen name="home" component={Home} />
       <Screen name="history" component={History} />
-      
       <Group screenOptions={{ gestureEnabled: false }}>
         <Screen name="quiz" component={Quiz} />
         <Screen name="finish" component={Finish} />

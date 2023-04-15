@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Text, View, BackHandler } from "react-native";
+import { Alert, Text, View } from "react-native";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Animated, {
@@ -15,7 +15,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { Audio } from "expo-av";
-import * as Haptics from "expo-haptics";
 
 import { styles } from "./styles";
 import { THEME } from "../../styles/theme";
@@ -137,9 +136,7 @@ export function Quiz() {
     return true;
   }
 
-  async function shakeAnimation() {
-    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-
+  function shakeAnimation() {
     shake.value = withSequence(
       withTiming(3, { duration: 400, easing: Easing.bounce }),
       withTiming(0, undefined, (finished) => {
@@ -230,15 +227,6 @@ export function Quiz() {
     const quizSelected = QUIZ.filter((item) => item.id === id)[0];
     setQuiz(quizSelected);
     setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      handleStop
-    );
-
-    return () => backHandler.remove();
   }, []);
 
   if (isLoading) {
